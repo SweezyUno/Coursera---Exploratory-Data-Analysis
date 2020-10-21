@@ -16,6 +16,24 @@
 ## mfrow: number of plots per row, column (plots are filled row-wise)
 ## mfcol: number of plots per row, column (plots are filled column-wise)
 
+#Scatter plot
+library(datasets)
+with(airquality, plot(Wind, Ozone))
+title(main = "Ozone and Wind in New York City") ## Adds a title
+with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue")) ## Color a subset blue
+with(subset(airquality, Month != 5), points(Wind, Ozone, col = "red")) ## Color the others red to make it easy to see
+legend("topright", pch = 1, col = c("blue", "red"), legend = c("May", "Other Months")) ## add a legend
+model <- lm(Ozone ~ Wind, airquality) ## plot the regression line based on this object
+abline(model, lwd= 2) ##add it to the plot and make the line thicker than average
+
+
+## Multiple Base Plots -
+par(mfrow = c(1,2) , mar = c(4,4,2,1), oma = c(0,0,2,0)) ## each call plot() will build making outer margin big enough to insert title at end
+with(airquality, {
+  plot(Wind, Ozone, main = "Ozone and Wind")
+  plot(Solar.R, Ozone, main = "Ozone and Solar Radiation")
+  mtext("Ozone and Weather in New York City", outer = TRUE) ## placing text over the top
+})
 
 ## Latice plot example -
 library(lattice, lib.loc = "C:/Program Files/R/R-4.0.3/library")
@@ -30,10 +48,6 @@ qplot(mpg$displ, hwy, data = mpg)
 #histogram
 library(datasets)
 hist(airquality$Ozone)
-
-#Scatter plot
-library(datasets)
-with(airquality, plot(Wind, Ozone))
 
 #Boxplot
 library(datasets)
