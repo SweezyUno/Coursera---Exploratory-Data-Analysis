@@ -20,7 +20,7 @@
 ## Latice plot example -
 library(lattice, lib.loc = "C:/Program Files/R/R-4.0.3/library")
 state <- data.frame(state.x77, region = state.region)
-xyplot(state$Life.Exp ~ Income | region, data = state, layout = c(4,1))
+xyplot(state$Life.Exp ~ Income | region, data = state, layout = c(4,1), ylab = "Life.Exp")
 
 #ggplot example -
 library(ggplot2)
